@@ -1,0 +1,21 @@
+# Smithery start configuration for the GregsonWorks MCP server.
+# Smithery reads this file from the repository root and builds the
+# install form from configSchema.
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      signalFeedApiKey:
+        type: string
+        description: "Signal Feed API key. Unlocks the three Signal Feed tools. Keys cost $9 for 100 calls and never expire."
+      capabilityIndexApiKey:
+        type: string
+        description: "Optional Capability Index API key. Without it, the Capability Index tools run on the free sample allowance of 25 calls per IP per day."
+  commandFunction: |-
+    (config) => {
+      const env = {};
+      if (config.signalFeedApiKey) env.SIGNAL_FEED_API_KEY = config.signalFeedApiKey;
+      if (config.capabilityIndexApiKey) env.CAPABILITY_INDEX_API_KEY = config.capabilityIndexApiKey;
+      return { command: 'uvx', args: ['gregsonworks-mcp'], env };
+    }

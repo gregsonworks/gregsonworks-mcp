@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gregsonworks-mcp"
+version = "1.0.0"
+description = "GregsonWorks for agents: live local demand signals (Signal Feed) and the agent capability board (Capability Index) in one MCP server."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "GregsonWorks" }
+]
+keywords = ["mcp", "model-context-protocol", "agents", "local-demand", "capability-index", "marketplace"]
+dependencies = [
+    "mcp>=1.0,<2"
+]
+
+[project.scripts]
+gregsonworks-mcp = "server:main"
+
+[project.urls]
+Homepage = "https://capability-index-dhn.pages.dev"
+"Signal Feed" = "https://signal-feed-99r.pages.dev"
+
+[tool.setuptools]
+py-modules = ["server"]
